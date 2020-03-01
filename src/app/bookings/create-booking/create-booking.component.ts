@@ -12,8 +12,8 @@ import { Place } from '../../places/place.model';
 export class CreateBookingComponent implements OnInit {
   @Input() selectedPlace: Place;
   @Input() selectedMode: 'select' | 'random';
-   // @ViewChild('f') form: NgForm; * * Bug do Angular 8 * *
-   @ViewChild('f', {static: false}) form: NgForm;
+  // @ViewChild('f') form: NgForm; * * Bug do Angular 8 * *
+  @ViewChild('f', {static: false}) form: NgForm;
   startDate: string;
   endDate: string;
 
