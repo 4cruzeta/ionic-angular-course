@@ -14,6 +14,7 @@ import { Place } from '../place.model';
 export class DiscoverPage implements OnInit, OnDestroy {
   loadedPlaces: Place[];
   listedLoadedPlaces: Place[];
+  isLoading = false;
   private placesSub: Subscription;
 
   constructor(
