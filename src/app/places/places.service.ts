@@ -6,6 +6,7 @@ import { take, map, tap, delay, switchMap } from 'rxjs/operators';
 import { Place } from './place.model';
 import { AuthService } from '../auth/auth.service';
 import { PlaceLocation } from './location.model';
+import { environment } from 'src/environments/environment';
 
 // [
 //   new Place(
@@ -66,7 +67,7 @@ export class PlacesService {
   fetchPlaces() {
     return this.http
       .get<{ [key: string]: PlaceData }>(
-        'https://ionic-angular-course.firebaseio.com/offered-places.json'
+        `${environment.firebaseDBlink}offered-places.json`
       )
       .pipe(
         map(resData => {
@@ -100,7 +101,7 @@ export class PlacesService {
   getPlace(id: string) {
     return this.http
       .get<PlaceData>(
-        `https://ionic-angular-course.firebaseio.com/offered-places/${id}.json`
+        `${environment.firebaseDBlink}offered-places/${id}.json`
       )
       .pipe(
         map(placeData => {
@@ -141,7 +142,7 @@ export class PlacesService {
     );
     return this.http
       .post<{ name: string }>(
-        'https://ionic-angular-course.firebaseio.com/offered-places.json',
+        `${environment.firebaseDBlink}offered-places.json`,
         {
           ...newPlace,
           id: null
@@ -194,7 +195,7 @@ export class PlacesService {
           oldPlace.location
         );
         return this.http.put(
-          `https://ionic-angular-course.firebaseio.com/offered-places/${placeId}.json`,
+          `${environment.firebaseDBlink}offered-places/${placeId}.json`,
           { ...updatedPlaces[updatedPlaceIndex], id: null }
         );
       }),

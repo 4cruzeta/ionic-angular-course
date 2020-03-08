@@ -5,6 +5,8 @@ import { take, tap, delay, switchMap, map } from 'rxjs/operators';
 
 import { Booking } from './booking.model';
 import { AuthService } from '../auth/auth.service';
+import { environment } from 'src/environments/environment';
+
 
 interface BookingData {
   bookedFrom: string;
@@ -53,7 +55,7 @@ export class BookingService {
     );
     return this.http
       .post<{ name: string }>(
-        'https://ionic-angular-course.firebaseio.com/bookings.json',
+        `${environment.firebaseDBlink}bookings.json`,
         { ...newBooking, id: null }
       )
       .pipe(
@@ -72,7 +74,7 @@ export class BookingService {
   cancelBooking(bookingId: string) {
     return this.http
       .delete(
-        `https://ionic-angular-course.firebaseio.com/bookings/${bookingId}.json`
+        `${environment.firebaseDBlink}bookings/${bookingId}.json`
       )
       .pipe(
         switchMap(() => {
@@ -88,7 +90,7 @@ export class BookingService {
   fetchBookings() {
     return this.http
       .get<{ [key: string]: BookingData }>(
-        `https://ionic-angular-course.firebaseio.com/bookings.json?orderBy="userId"&equalTo="${
+        `${environment.firebaseDBlink}bookings.json?orderBy="userId"&equalTo="${
           this.authService.userId
         }"`
       )
