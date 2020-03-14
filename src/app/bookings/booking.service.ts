@@ -7,7 +7,6 @@ import { Booking } from './booking.model';
 import { AuthService } from '../auth/auth.service';
 import { environment } from 'src/environments/environment';
 
-
 interface BookingData {
   bookedFrom: string;
   bookedTo: string;
